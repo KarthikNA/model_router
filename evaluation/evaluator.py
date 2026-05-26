@@ -292,6 +292,6 @@ if __name__ == "__main__":
 
     print("\nRunning latency benchmark (1000 iterations)...")
     bench = evaluator.run_latency_benchmark(n_iterations=1000)
-    print(json.dumps(bench, indent=2))
+    print(json.dumps({k: round(v, 3) if isinstance(v, float) else v for k, v in bench.items()}, indent=2))
 
     sys.exit(0 if report.accuracy >= 0.75 and report.meets_p99_sla else 1)
