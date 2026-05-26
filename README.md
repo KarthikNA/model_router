@@ -1,6 +1,6 @@
 # Model Router
 
-A lightweight, zero-latency LLM routing layer that selects the best model for each prompt at runtime — balancing cost, speed, task fit, and model capability — without making any API call to do so.
+A lightweight, low-latency LLM routing layer that selects the best model for each prompt at runtime — balancing cost, speed, task fit, and model capability — without making any API call to do so.
 
 ---
 
@@ -8,7 +8,7 @@ A lightweight, zero-latency LLM routing layer that selects the best model for ea
 
 Large language model APIs span a wide cost and capability range: a simple factual question costs 100× less on `gpt-4o-mini` than on `claude-opus-4`, yet the quality difference is negligible. The router's job is to exploit this gap automatically.
 
-**Core objective:** given an arbitrary prompt, pick the cheapest model that is still capable enough to handle it well — in under 1 ms, with no external dependency.
+**Core objective:** given an arbitrary prompt, pick the cheapest model that is still capable enough to handle it well — in under 1 s, with no external dependency.
 
 Secondary objectives (configurable via `ScoringWeights`):
 - Minimise per-request cost
@@ -138,7 +138,6 @@ The one latency outlier is token counting on very long prompts (the 140k-token c
 # Python 3.7+ required
 git clone <repo>
 cd model_router
-pip install anthropic openai google-generativeai   # only needed for actual API calls
 ```
 
 ### Run the demo
