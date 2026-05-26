@@ -1,0 +1,27 @@
+Running standard test suite...
+
+============================================================
+MODEL ROUTER — EVALUATION REPORT
+============================================================
+Accuracy          : 100.0%  (10/10)
+Latency p50       : 0.6 ms  ✓ (SLA: <200ms)
+Latency p95       : 482.0 ms
+Latency p99       : 482.0 ms  ✓ (SLA: <500ms)
+Avg cost/request  : $0.7546m
+Cost vs always-best: 0.03x  (97% savings)
+
+============================================================
+
+Running latency benchmark (1000 iterations)...
+{
+  "n": 1000,
+  "min_ms": 0.38,
+  "p50_ms": 0.383,
+  "p90_ms": 0.419,
+  "p95_ms": 0.663,
+  "p99_ms": 0.921,
+  "max_ms": 2.676,
+  "mean_ms": 0.414,
+  "meets_p50_sla": true,
+  "meets_p99_sla": true
+}

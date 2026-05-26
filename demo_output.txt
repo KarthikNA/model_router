@@ -1,0 +1,74 @@
+=================================================================
+MODEL ROUTER — DEMO
+=================================================================
+
+[Simple factual]
+  Prompt   : What is the boiling point of water?
+  → Model  : gpt-4o-mini (score=0.863)
+  Latency  : 0.71 ms
+  Complexity: simple | Tasks: ['general'] | Lang: en
+  Runners-up: ['gemini-2.0-flash', 'claude-3-5-haiku-20241022']
+
+[Code generation]
+  Prompt   : Write a Python class implementing a min-heap.
+  → Model  : gemini-2.0-flash (score=0.816)
+  Latency  : 0.40 ms
+  Complexity: moderate | Tasks: ['coding', 'writing'] | Lang: en
+  Runners-up: ['deepseek-chat', 'gpt-4o-mini']
+
+[Math proof]
+  Prompt   : Prove by induction that the sum of first n integers equals n...
+  → Model  : claude-sonnet-4-20250514 (score=0.605)
+  Latency  : 0.38 ms
+  Complexity: expert | Tasks: ['general'] | Lang: en
+  Runners-up: ['deepseek-reasoner', 'o3-mini']
+
+[French query]
+  Prompt   : Résumez les principes de la thermodynamique.
+  → Model  : gpt-4o-mini (score=0.863)
+  Latency  : 0.39 ms
+  Complexity: trivial | Tasks: ['general'] | Lang: fr
+  Runners-up: ['gemini-2.0-flash', 'claude-3-5-haiku-20241022']
+
+[Chinese query]
+  Prompt   : 用简单的语言解释机器学习。
+  → Model  : gpt-4o-mini (score=0.825)
+  Latency  : 0.27 ms
+  Complexity: trivial | Tasks: ['general'] | Lang: zh
+  Runners-up: ['gemini-2.0-flash', 'claude-3-5-haiku-20241022']
+
+[Long context]
+  Prompt   : Summarise the following: text text text text text text text ...
+  → Model  : gpt-4o-mini (score=0.863)
+  Latency  : 160.23 ms
+  Complexity: moderate | Tasks: ['general'] | Lang: en
+  Runners-up: ['gemini-2.0-flash', 'claude-3-5-haiku-20241022']
+
+[Agentic task]
+  Prompt   : You are an agent with web search tools. Research and compare...
+  → Model  : deepseek-reasoner (score=0.682)
+  Latency  : 0.57 ms
+  Complexity: expert | Tasks: ['reasoning', 'agentic'] | Lang: en
+  Runners-up: ['o3-mini', 'gemini-2.5-pro']
+
+=================================================================
+RUNNING EVALUATION SUITE
+=================================================================
+
+============================================================
+MODEL ROUTER — EVALUATION REPORT
+============================================================
+Accuracy          : 100.0%  (10/10)
+Latency p50       : 0.6 ms  ✓ (SLA: <200ms)
+Latency p95       : 477.5 ms
+Latency p99       : 477.5 ms  ✓ (SLA: <500ms)
+Avg cost/request  : $0.6738m
+Cost vs always-best: 0.03x  (97% savings)
+
+============================================================
+
+LATENCY BENCHMARK (500 iterations)
+  p50: 0.38 ms  ✓
+  p95: 0.40 ms
+  p99: 0.46 ms  ✓
+  mean: 0.39 ms
