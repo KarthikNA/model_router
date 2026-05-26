@@ -55,6 +55,7 @@ class RouterConfig:
 
 @dataclass
 class RouterResult:
+    """Outcome of a single routing decision, including diagnostics for observability."""
     model_id: str
     model_spec: ModelSpec
     score: float
@@ -190,6 +191,7 @@ def _build_explanation(
     features: PromptFeatures,
     is_fallback: bool,
 ) -> str:
+    """Build a human-readable routing decision summary for logging and debugging."""
     model = selected.model
     parts = [f"Selected: {model.display_name} ({model.model_id})"]
 

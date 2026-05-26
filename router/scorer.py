@@ -39,12 +39,14 @@ _COMPLEXITY_ORDER = [
 
 @dataclass
 class ScoringWeights:
+    """Relative importance of each scoring objective. Must sum to 1.0."""
     cost: float = 0.30          # Optimise for cost
     throughput: float = 0.20    # Optimise for speed
     relevance: float = 0.35     # Task / language match (primary differentiator)
     capability: float = 0.15    # Headroom / appropriateness
 
     def validate(self) -> None:
+        """Raise ValueError if weights do not sum to 1.0."""
         total = self.cost + self.throughput + self.relevance + self.capability
         if not math.isclose(total, 1.0, abs_tol=1e-6):
             raise ValueError(f"Weights must sum to 1.0, got {total:.4f}")
@@ -52,6 +54,7 @@ class ScoringWeights:
 
 @dataclass
 class ModelScore:
+    """Per-model scoring result, including per-objective breakdown and elimination status."""
     model: ModelSpec
     total_score: float
     cost_score: float
@@ -149,6 +152,7 @@ def _score_capability(model: ModelSpec, features: PromptFeatures) -> float:
 # ---------------------------------------------------------------------------
 
 def _is_eligible(model: ModelSpec, features: PromptFeatures) -> tuple[bool, str]:
+    """Return (True, '') if the model passes all hard constraints, else (False, reason)."""
     if not model.is_available:
         return False, "model unavailable"
 

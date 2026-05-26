@@ -11,6 +11,7 @@ from typing import Optional
 
 
 class ModelType(str, Enum):
+    """Broad capability category used during hard-constraint filtering."""
     REASONING = "reasoning"       # o1, o3, DeepSeek-R1 style
     STANDARD = "standard"         # GPT-4o, Claude Sonnet, Gemini Pro
     FAST = "fast"                 # GPT-4o-mini, Claude Haiku, Gemini Flash
@@ -20,6 +21,7 @@ class ModelType(str, Enum):
 
 
 class TaskComplexity(str, Enum):
+    """Ordered complexity ladder — used to match prompts to model capability ranges."""
     TRIVIAL = "trivial"           # < 50 tokens, simple lookup
     SIMPLE = "simple"             # factual, single-step
     MODERATE = "moderate"         # multi-step, moderate reasoning
@@ -29,6 +31,7 @@ class TaskComplexity(str, Enum):
 
 @dataclass
 class ModelSpec:
+    """Static descriptor for a single LLM — cost, latency, capability, and provider metadata."""
     model_id: str
     display_name: str
     model_type: ModelType
@@ -261,8 +264,10 @@ MODEL_REGISTRY: dict[str, ModelSpec] = {
 
 
 def get_available_models() -> list[ModelSpec]:
+    """Return all models where is_available is True."""
     return [m for m in MODEL_REGISTRY.values() if m.is_available]
 
 
 def get_model(model_id: str) -> Optional[ModelSpec]:
+    """Look up a model by ID; returns None if not in the registry."""
     return MODEL_REGISTRY.get(model_id)

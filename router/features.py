@@ -230,6 +230,7 @@ def estimate_tokens(text: str) -> int:
 
 @dataclass
 class PromptFeatures:
+    """All routing signals derived from a raw prompt, computed without any LLM call."""
     raw_text: str
     token_count: int
     language: str

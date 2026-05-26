@@ -36,6 +36,7 @@ from router.scorer import ScoringWeights
 
 @dataclass
 class TestCase:
+    """A single evaluation fixture: prompt, acceptable model IDs, and optional complexity floor."""
     prompt: str
     expected_model_ids: list[str]    # acceptable set (not always one answer)
     description: str
@@ -117,6 +118,7 @@ STANDARD_TEST_SUITE: list[TestCase] = [
 
 @dataclass
 class TestResult:
+    """Output of routing a single TestCase, including correctness and latency."""
     test_case: TestCase
     routed_model_id: str
     correct: bool
@@ -128,6 +130,7 @@ class TestResult:
 
 @dataclass
 class EvaluationReport:
+    """Aggregated metrics across a full test suite run."""
     accuracy: float              # fraction of test cases correctly routed
     p50_latency_ms: float
     p95_latency_ms: float
@@ -140,6 +143,7 @@ class EvaluationReport:
     failures: list[TestResult] = field(default_factory=list)
 
     def print_summary(self) -> None:
+        """Print a formatted evaluation report to stdout."""
         print("\n" + "="*60)
         print("MODEL ROUTER — EVALUATION REPORT")
         print("="*60)
@@ -164,6 +168,7 @@ class EvaluationReport:
 # ---------------------------------------------------------------------------
 
 class RouterEvaluator:
+    """Runs correctness, latency, and cost evaluations against the router."""
 
     def __init__(self, router: ModelRouter | None = None):
         self.router = router or ModelRouter()
@@ -173,6 +178,7 @@ class RouterEvaluator:
         test_suite: list[TestCase] | None = None,
         warmup_rounds: int = 3,
     ) -> EvaluationReport:
+        """Run the test suite and return an aggregated EvaluationReport."""
         cases = test_suite or STANDARD_TEST_SUITE
 
         # Warm up (JIT, caches)
