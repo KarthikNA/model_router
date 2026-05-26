@@ -136,7 +136,7 @@ The one latency outlier is token counting on very long prompts (the 140k-token c
 
 ```bash
 # Python 3.7+ required
-git clone <repo>
+git clone https://github.com/KarthikNA/model_router
 cd model_router
 ```
 
