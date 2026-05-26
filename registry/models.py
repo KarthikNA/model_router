@@ -3,6 +3,8 @@ Model Registry — single source of truth for all model metadata.
 Add new models here; the router picks them up automatically.
 """
 
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional

@@ -3,6 +3,8 @@ Feature Extractor — derives routing signals from raw prompt text.
 All operations are local (no LLM call) to stay within latency budget.
 """
 
+from __future__ import annotations
+
 import os, sys
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE) if os.path.basename(_HERE) in ("evaluation", "router", "registry") else _HERE

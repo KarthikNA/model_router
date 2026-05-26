@@ -10,6 +10,8 @@ Run:
     python -m evaluation.evaluator
 """
 
+from __future__ import annotations
+
 import os, sys
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.dirname(_HERE) if os.path.basename(_HERE) in ("evaluation", "router", "registry") else _HERE
